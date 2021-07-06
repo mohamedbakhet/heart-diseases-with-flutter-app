@@ -1,19 +1,14 @@
 import numpy as np
-from flask import Flask, request, jsonify, render_template
+
 from keras.models import model_from_json
 from keras.optimizers import Adam
 import keras
-import numpy as np
 from sklearn.preprocessing import LabelEncoder
 import os
 import wfdb
 from wfdb import processing
 import scipy.signal as sign
-import matplotlib.pyplot as plt
-import numpy as np
 from ecgdetectors import Detectors
-import pandas as pd
-import time
 from tensorflow.keras.layers import Input, Conv2D, MaxPooling2D, GlobalAveragePooling2D, BatchNormalization, Conv1D
 import tflearn
 from tflearn.layers.conv import conv_2d, max_pool_2d
