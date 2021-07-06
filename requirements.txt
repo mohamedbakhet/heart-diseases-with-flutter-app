@@ -1,5 +1,4 @@
 keras
-sklearn=0.24.2
 os
 wfdb 
 ecgdetectors
@@ -15,3 +14,4 @@ scipy
 scikit-learn
 matplotlib
 pandas
+sklearn=0.24.2
