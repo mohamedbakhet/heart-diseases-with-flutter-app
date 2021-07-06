@@ -1,0 +1,17 @@
+keras
+sklearn
+os
+wfdb 
+ecgdetectors
+tflearn
+Flask
+gunicorn
+itsdangerous
+Jinja2
+MarkupSafe
+Werkzeug
+numpy
+scipy
+scikit-learn
+matplotlib
+pandas
