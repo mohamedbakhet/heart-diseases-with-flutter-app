@@ -4,12 +4,11 @@ scipy>=0.15.1
 scikit-learn>=0.18
 matplotlib>=1.4.3
 pandas>=0.19
-tensorflow
-keras
-os
-wfdb 
-ecgdetectors
-tflearn
+tensorflow==2.5.0
+keras==2.4.3
+wfdb==3.4.0
+ecgdetectors==1.0.2
+tflearn==0.5.0
 
 
 
