@@ -1,5 +1,5 @@
 keras
-sklearn
+sklearn=0.24.2
 os
 wfdb 
 ecgdetectors
