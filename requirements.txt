@@ -1,7 +1,6 @@
 Flask==1.1.1
 numpy>=1.9.2
 scipy>=0.15.1
-tensorflow==2.5.0
 keras==2.4.3
 wfdb==3.4.0
 py-ecg-detectors==1.0.2
