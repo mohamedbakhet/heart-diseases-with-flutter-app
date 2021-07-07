@@ -9,12 +9,12 @@ import wfdb
 from wfdb import processing
 import scipy.signal as sign
 from ecgdetectors import Detectors
-from tensorflow.keras.layers import Input, Conv2D, MaxPooling2D, GlobalAveragePooling2D, BatchNormalization, Conv1D
+#from tensorflow.keras.layers import Input, Conv2D, MaxPooling2D, GlobalAveragePooling2D, BatchNormalization, Conv1D
 import tflearn
 from tflearn.layers.conv import conv_2d, max_pool_2d
 from tflearn.layers.core import input_data, dropout, fully_connected
 from tflearn.layers.estimator import regression
-from tensorflow.keras import datasets, layers, models
+#from tensorflow.keras import datasets, layers, models
 class model:
     # def __init__(self):
     #     json_file = open('ResNetNaive.json', 'r')
@@ -271,105 +271,105 @@ class model:
         # print(self.first)
         return input
 
-    def predictmyco(self,x):
-        k = ['anterior', 'antero-lateral', 'antero-septal', 'antero-septo-lateral', 'inferior', 'infero-lateral',
-             'infero-postero-lateral', 'lateral', 'posterior', 'postero-lateral', 'infero-posterior']
-        peats, df, fi = self.processing(x)
-        X_test = self.col(peats)
-        X_test = X_test.reshape(-1, 300, 15)
-        fi = self.to_one_dict(fi)
-        print(fi)
-        diasease = fi['Acute infarction (localization)']
-        # json_file = open('vggML.json', 'r')
-        # loaded_model_json = json_file.read()
-        # json_file.close()
-        # loaded_model = model_from_json(loaded_model_json)
-
-        img_input = Input((300, 15))
-        # Block 1
-        x = layers.Conv1D(64, 3,
-                          activation='relu',
-                          padding='same',
-                          name='block1_conv1')(img_input)
-        x = layers.Conv1D(64, 3,
-                          activation='relu',
-                          padding='same',
-                          name='block1_conv2')(x)
-        x = layers.MaxPooling1D(2, strides=2, name='block1_pool', padding='same')(x)
-
-        # Block 2
-        x = layers.Conv1D(128, 3,
-                          activation='relu',
-                          padding='same',
-                          name='block2_conv1')(x)
-        x = layers.Conv1D(128, 3,
-                          activation='relu',
-                          padding='same',
-                          name='block2_conv2')(x)
-        x = layers.MaxPooling1D(2, strides=2, name='block2_pool', padding='same')(x)
-
-        # Block 3
-        x = layers.Conv1D(256, 3,
-                          activation='relu',
-                          padding='same',
-                          name='block3_conv1')(x)
-        x = layers.Conv1D(256, 3,
-                          activation='relu',
-                          padding='same',
-                          name='block3_conv2')(x)
-        x = layers.Conv1D(256, 3,
-                          activation='relu',
-                          padding='same',
-                          name='block3_conv3')(x)
-        x = layers.MaxPooling1D(2, strides=2, name='block3_pool', padding='same')(x)
-
-        # Block 4
-        x = layers.Conv1D(512, 3,
-                          activation='relu',
-                          padding='same',
-                          name='block4_conv1')(x)
-        x = layers.Conv1D(512, 3,
-                          activation='relu',
-                          padding='same',
-                          name='block4_conv2')(x)
-        x = layers.Conv1D(512, 3,
-                          activation='relu',
-                          padding='same',
-                          name='block4_conv3')(x)
-        x = layers.MaxPooling1D(2, strides=2, name='block4_pool', padding='same')(x)
-
-        # Block 5
-        x = layers.Conv1D(512, 3,
-                          activation='relu',
-                          padding='same',
-                          name='block5_conv1')(x)
-        x = layers.Conv1D(512, 3,
-                          activation='relu',
-                          padding='same',
-                          name='block5_conv2')(x)
-        x = layers.Conv1D(512, 3,
-                          activation='relu',
-                          padding='same',
-                          name='block5_conv3')(x)
-        x = layers.MaxPooling1D(2, strides=2, name='block5_pool', padding='same')(x)
-
-        # Classification block
-        x = layers.Flatten(name='flatten')(x)
-        x = layers.Dense(128, activation='relu', name='fc1')(x)  # reduced dim for 1-d task
-        x = layers.Dense(128, activation='relu', name='fc2')(x)
-        x = layers.Dense(14, activation='softmax', name='predictions')(x)
-
-        # Create model.
-        loaded_model = models.Model(img_input, x, name='vgg16')
-
-
-        loaded_model.load_weights("vggML.h5")
-        opt = Adam(lr=0.001)
-        loaded_model.compile(optimizer=opt, loss=keras.losses.categorical_crossentropy, metrics=['accuracy'])
-        y_predict = loaded_model.predict(X_test)
-        print(y_predict)
-        y_predict =y_predict.argmax(axis=1)
-        labels = LabelEncoder()
-        train_labels = labels.fit(k)
-        second = labels.inverse_transform(y_predict)[0]
-        return second
+    # def predictmyco(self,x):
+    #     k = ['anterior', 'antero-lateral', 'antero-septal', 'antero-septo-lateral', 'inferior', 'infero-lateral',
+    #          'infero-postero-lateral', 'lateral', 'posterior', 'postero-lateral', 'infero-posterior']
+    #     peats, df, fi = self.processing(x)
+    #     X_test = self.col(peats)
+    #     X_test = X_test.reshape(-1, 300, 15)
+    #     fi = self.to_one_dict(fi)
+    #     print(fi)
+    #     diasease = fi['Acute infarction (localization)']
+    #     # json_file = open('vggML.json', 'r')
+    #     # loaded_model_json = json_file.read()
+    #     # json_file.close()
+    #     # loaded_model = model_from_json(loaded_model_json)
+    #
+    #     img_input = Input((300, 15))
+    #     # Block 1
+    #     x = layers.Conv1D(64, 3,
+    #                       activation='relu',
+    #                       padding='same',
+    #                       name='block1_conv1')(img_input)
+    #     x = layers.Conv1D(64, 3,
+    #                       activation='relu',
+    #                       padding='same',
+    #                       name='block1_conv2')(x)
+    #     x = layers.MaxPooling1D(2, strides=2, name='block1_pool', padding='same')(x)
+    #
+    #     # Block 2
+    #     x = layers.Conv1D(128, 3,
+    #                       activation='relu',
+    #                       padding='same',
+    #                       name='block2_conv1')(x)
+    #     x = layers.Conv1D(128, 3,
+    #                       activation='relu',
+    #                       padding='same',
+    #                       name='block2_conv2')(x)
+    #     x = layers.MaxPooling1D(2, strides=2, name='block2_pool', padding='same')(x)
+    #
+    #     # Block 3
+    #     x = layers.Conv1D(256, 3,
+    #                       activation='relu',
+    #                       padding='same',
+    #                       name='block3_conv1')(x)
+    #     x = layers.Conv1D(256, 3,
+    #                       activation='relu',
+    #                       padding='same',
+    #                       name='block3_conv2')(x)
+    #     x = layers.Conv1D(256, 3,
+    #                       activation='relu',
+    #                       padding='same',
+    #                       name='block3_conv3')(x)
+    #     x = layers.MaxPooling1D(2, strides=2, name='block3_pool', padding='same')(x)
+    #
+    #     # Block 4
+    #     x = layers.Conv1D(512, 3,
+    #                       activation='relu',
+    #                       padding='same',
+    #                       name='block4_conv1')(x)
+    #     x = layers.Conv1D(512, 3,
+    #                       activation='relu',
+    #                       padding='same',
+    #                       name='block4_conv2')(x)
+    #     x = layers.Conv1D(512, 3,
+    #                       activation='relu',
+    #                       padding='same',
+    #                       name='block4_conv3')(x)
+    #     x = layers.MaxPooling1D(2, strides=2, name='block4_pool', padding='same')(x)
+    #
+    #     # Block 5
+    #     x = layers.Conv1D(512, 3,
+    #                       activation='relu',
+    #                       padding='same',
+    #                       name='block5_conv1')(x)
+    #     x = layers.Conv1D(512, 3,
+    #                       activation='relu',
+    #                       padding='same',
+    #                       name='block5_conv2')(x)
+    #     x = layers.Conv1D(512, 3,
+    #                       activation='relu',
+    #                       padding='same',
+    #                       name='block5_conv3')(x)
+    #     x = layers.MaxPooling1D(2, strides=2, name='block5_pool', padding='same')(x)
+    #
+    #     # Classification block
+    #     x = layers.Flatten(name='flatten')(x)
+    #     x = layers.Dense(128, activation='relu', name='fc1')(x)  # reduced dim for 1-d task
+    #     x = layers.Dense(128, activation='relu', name='fc2')(x)
+    #     x = layers.Dense(14, activation='softmax', name='predictions')(x)
+    #
+    #     # Create model.
+    #     loaded_model = models.Model(img_input, x, name='vgg16')
+    #
+    #
+    #     loaded_model.load_weights("vggML.h5")
+    #     opt = Adam(lr=0.001)
+    #     loaded_model.compile(optimizer=opt, loss=keras.losses.categorical_crossentropy, metrics=['accuracy'])
+    #     y_predict = loaded_model.predict(X_test)
+    #     print(y_predict)
+    #     y_predict =y_predict.argmax(axis=1)
+    #     labels = LabelEncoder()
+    #     train_labels = labels.fit(k)
+    #     second = labels.inverse_transform(y_predict)[0]
+    #     return second
