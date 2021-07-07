@@ -5,6 +5,7 @@ keras==2.4.3
 wfdb==3.4.0
 py-ecg-detectors==1.0.2
 tflearn==0.5.0
+gunicorn 20.1.0 
 
 
 
