@@ -34,18 +34,18 @@ def success():
 
         n = m.predict(x)
         if n == 'Myocardial infraction':
-            s=m.predictmyco(x)
-            return jsonify({
-                "status": "success",
-                "prediction": n,
-                "confidence": s,
-            })
-        else:
-            return jsonify({
-                "status": "success",
-                "prediction": n,
-                "confidence": None,
-            })
+           # s=m.predictmyco(x)
+            #return jsonify({
+             #   "status": "success",
+              #  "prediction": n,
+               # "confidence": s,
+            #})
+        #else:
+        return jsonify({
+            "status": "success",
+            "prediction": n,
+            "confidence": None,
+        })
 
         # return render_template("success.html",hame=s,name=n)
 
@@ -80,4 +80,4 @@ def success():
 #             })
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
