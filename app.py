@@ -7,7 +7,7 @@ from deep import model
 app = Flask(__name__)
 m=model()
 
-@app.route('/')
+@app.route('/',methods=['get'])
 def upload():
     #mod = Blueprint('backend', __name__, template_folder='templates', static_folder='./static')
     #UPLOAD_URL = 'http: // 192.168.1.103: 5000 / static /'
