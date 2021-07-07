@@ -9,8 +9,8 @@ m=model()
 
 @app.route('/')
 def upload():
-    mod = Blueprint('backend', __name__, template_folder='templates', static_folder='./static')
-    UPLOAD_URL = 'http: // 192.168.1.103: 5000 / static /'
+    #mod = Blueprint('backend', __name__, template_folder='templates', static_folder='./static')
+    #UPLOAD_URL = 'http: // 192.168.1.103: 5000 / static /'
 
     return render_template("file_upload_form.html")
 
